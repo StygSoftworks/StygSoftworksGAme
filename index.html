@@ -1,0 +1,123 @@
+<!-- basic html page with jquery -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Avoider</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- import color -->
+    <script src="colors.js"></script>
+
+    <!-- import constants -->
+    <script src="constants.js"></script>
+
+    <!-- import the collision.js -->
+    <script src="collision.js"></script>
+
+    <!-- import the gameStates.js -->
+    <script src="gameStates.js"></script>
+
+    <!-- import the menu.js -->
+    <script src="menu.js"></script>
+
+    <!-- import the player.js -->
+    <script src="player.js"></script>
+
+    <!-- import the movingSlopes.js -->
+    <script src="movingSlopes.js"></script>
+
+
+    <script>
+
+        var canvas, ctx;
+
+        $(document).ready(function(){
+            
+            //create new canvas with an id of canvas and append it to the body
+            canvas = document.createElement("canvas");
+            canvas.id = "canvas";
+            document.body.appendChild(canvas);
+            ctx = canvas.getContext("2d");
+
+            //function to resize canvas to 80% of the window
+            function resizeCanvas(){
+
+                //get the min of the window width and height
+                var canvasSize = Math.min(window.innerWidth, window.innerHeight)* 0.95;
+
+                canvas.width = canvasSize;
+                canvas.height = canvasSize;
+
+                //center the canvas
+                canvas.style.marginLeft = (window.innerWidth - canvasSize)/2 + "px";
+                canvas.style.marginTop = (window.innerHeight - canvasSize)/2 + "px";
+            }
+
+            resizeCanvas();
+
+            //resizeCanvas on window resize
+            window.addEventListener("resize", resizeCanvas);
+    
+            //reset the player
+            player.reset();
+
+            //reset the menu
+            menu.reset();
+
+            //function to play the game
+            function gameLoop(){
+
+                //depending on the game state, do different things
+                switch(gameState){
+
+                    //if the game is in the menu state
+                    case gameStates.mainMenu:
+                        //draw the menu
+                        menu.draw();
+                        break;
+                    
+                    //if the game is in the game state
+                    case gameStates.game:
+
+                        //clear the canvas
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        
+                        //make the canvas background orange
+                        ctx.fillStyle = "white";
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                        //update the moving slopes
+                        movingSlopes.update();
+
+                        //update the player
+                        player.update();
+
+                        //draw the player score
+                        player.drawScore();
+
+                        //draw a 5px border around the canvas
+                        ctx.strokeStyle = "black";
+                        ctx.lineWidth = 5;
+                        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+                        break;
+
+                    case gameStates.settings:
+                        settings.draw();
+                        break;
+                }
+            }
+
+            //call the gameLoop 
+            setInterval(gameLoop, 1000/CONSTANTS.FPS);
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <!-- <h1>Game Avoider</h1> -->
+</body>
+
+</html>
