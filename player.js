@@ -62,6 +62,10 @@ var player={
 
         this.gameOver=false;
 
+        //add touch listeners
+        document.addEventListener("touchstart",this.touchStartHandler,false);
+        document.addEventListener("touchend",this.touchEndHandler,false);
+
         //add key listeners
         document.addEventListener("keydown",this.keyDownHandler,false);
         document.addEventListener("keyup",this.keyUpHandler,false);
@@ -78,6 +82,16 @@ var player={
         
     },
 
+    //touch start handler
+    touchStartHandler: function(e){
+        player.jumpButton.pressed = true;
+    },
+
+    //touch end handler
+    touchEndHandler: function(e){
+        player.jumpButton.pressed = false;
+    },
+    
     //keydown handler
     keyDownHandler: function(e){
         //if player.jumpButton is not undefined
@@ -145,7 +159,7 @@ var player={
             else if(this.rotation < -45){
                 this.rotation = -45;
             }
-            
+
 
             if(this.rotation != 0){
 
