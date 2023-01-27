@@ -20,7 +20,6 @@ var movingSlopes = {
         //get the screen position enum
         var screenPosition = screenPositionEnum.Outside;
 
-
         //if the slope is in the first quarter of the screen
         if (slopePosition < canvas.height / 4) {
             screenPosition = screenPositionEnum.Quarter;
@@ -264,13 +263,13 @@ var movingSlopes = {
         //determine the color based on the enum
         switch (slopeEnum) {
             case screenPositionEnum.Quarter:
-                color = "rgb(255,0,0)"; // red
+                //color = "rgb(255,0,0)"; // red
                 break;
             case screenPositionEnum.Half:
-                color = "rgb(0,255,0)"; // green
+                //color = "rgb(0,255,0)"; // green
                 break;
             case screenPositionEnum.ThreeQuarter:
-                color = "rgb(0,0,255)"; // blue
+                //color = "rgb(0,0,255)"; // blue
 
                 if (Math.random() > 0.5) {
                     rotation = Math.floor(Math.random() * 45);
@@ -279,7 +278,7 @@ var movingSlopes = {
                 //rotation = Math.floor(Math.random() * 45);
                 break;
             case screenPositionEnum.Full:
-                color = "rgb(255,255,0)"; // yellow
+                //color = "rgb(255,255,0)"; // yellow
                 //make sure the rotation is between -45 and 0 degrees randomly
                 
 
@@ -293,7 +292,7 @@ var movingSlopes = {
 
                 break;
             case screenPositionEnum.Outside:
-                color = "rgb(255,0,255)"; // magenta
+                //color = "rgb(255,0,255)"; // magenta
                 rotation = Math.floor(Math.random() * 45) - 45;
                 break;
 
