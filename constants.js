@@ -24,6 +24,7 @@ const PLAYERCHARACTERS = {
         {Name:"Rocco", label:"Cuck Ass Puss", image:"images/rocco.png"},
         {Name:"Dave",label:"A Hero", image:"images/daveShrooms.png"},
         {Name:"Collin",label:"Take the Damage", image:"images/take_the_damage.png"},
+        {Name:"Ahab",label:"Swag Itself", image:"images/Ahab.png"},
     ]
 
 };
